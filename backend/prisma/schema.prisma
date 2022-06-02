@@ -10,11 +10,16 @@ datasource db {
   referentialIntegrity = "prisma"
 }
 
+model Category {
+  id       Int       @id @default(autoincrement())
+  name     String    @db.VarChar(255)
+  products Product[]
+}
+
 model Product {
   id          Int      @id @default(autoincrement())
   name        String   @db.VarChar(255)
   codePro     String
-  category    Category @relation(fields: [categoryId], references: [id])
   categoryId  Int
   description String   @db.VarChar(255)
   createdAt   DateTime @default(now())
@@ -30,12 +35,7 @@ model Product {
   img_2       String   @default("")
   publish     Boolean
   newPro      Boolean
-}
-
-model Category {
-  id       Int       @id @default(autoincrement())
-  name     String    @db.VarChar(255)
-  products Product[]
+  category    Category @relation(fields: [categoryId], references: [id])
 }
 
 model Accessory {
@@ -74,8 +74,8 @@ model Order {
   namePro   String
   price     Int
   status    String
-  user      User     @relation(fields: [userId], references: [id])
   userId    Int
+  user      User     @relation(fields: [userId], references: [id])
 }
 
 model BannerImg {
