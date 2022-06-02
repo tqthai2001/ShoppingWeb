@@ -18,6 +18,7 @@ const sizeDB = ['size_S', 'size_M', 'size_L', 'size_XL']
 
 const ProductDetailBody = ({product, match, dispatch, sale}) => {
     const [keyActive, setKeyActive] = useState('')
+    const [indexSizeActive, setIndexSizeActive] = useState(-1)
     const [quantity, setQuantity] = useState(1)
     const detailProduct = product.filter((item) => item.codePro === match.params.code)[0];
 
@@ -74,6 +75,7 @@ const ProductDetailBody = ({product, match, dispatch, sale}) => {
                             <div className="row mt-4">
                                 <div className="col-md d-flex mb-3">
                                     {size.map((item, index) => {
+                                        if (detailProduct[sizeDB[index]] > 0) {
                                         return (
                                             <span className="mr-2">
                                                 <button className={`input-size-btn ${(keyActive === item)
@@ -81,10 +83,14 @@ const ProductDetailBody = ({product, match, dispatch, sale}) => {
                                                     && "disable"}`}
                                                     key={index}
                                                     type="button"
-                                                    onClick={() => {setKeyActive(item)}}
+                                                    onClick={() => {
+                                                        setKeyActive(item);
+                                                        setIndexSizeActive(index);
+                                                    }}
                                                 > {item} </button>
                                             </span>
                                         )
+                                        }
                                     })}
                                 </div>
 							    <div className="w-100"></div>
@@ -104,19 +110,21 @@ const ProductDetailBody = ({product, match, dispatch, sale}) => {
                                         <button className="quantity-left-minus btn"
                                                 type="button"
                                                 onClick={() => {
-                                                    setQuantity(quantity + 1)
+                                                    if (quantity < detailProduct[sizeDB[indexSizeActive]])
+                                                        setQuantity(quantity + 1)
+                                                    else toast.warning("Vượt quá số lượng trong kho hàng!")
                                                 }}
                                         ><i className="fas fa-plus"></i></button>
                                     </span>
                                 </div>
           	                </div>
                             <div onClick={handleAddCart}>
-                                <ToastContainer/>
                                 <div className="btn btn-primary py-3 px-5">Add to Cart</div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <ToastContainer/>
             </section>
             <Products/>
             <Subscribe/>

@@ -90,19 +90,21 @@ const ProductDetailAccessory = ({product, match, dispatch, sale}) => {
                                         <button className="quantity-left-minus btn"
                                                 type="button"
                                                 onClick={() => {
-                                                    setQuantity(quantity + 1)
+                                                    if (quantity < detailAccessory.count)
+                                                        setQuantity(quantity + 1)
+                                                    else toast.warning("Vượt quá số lượng trong kho hàng!")
                                                 }}
                                         ><i className="fas fa-plus"></i></button>
                                     </span>
                                 </div>
           	                </div>
                             <div onClick={handleAddCart}>
-                                <ToastContainer/>
                                 <div className="btn btn-primary py-3 px-5">Add to Cart</div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <ToastContainer/>
             </section>
             <Products/>
             <Subscribe/>

@@ -158,11 +158,11 @@ const CartMain = ({user, cart, dispatch, sale}) => {
                                                     }
                                                 }}
                                             > Proceed to Checkout </button>
-                                            <ToastContainer/>
                                         </p>
                                     </div>
                                 </div>
                             </div>
+                            <ToastContainer/>
                         </section>
                     </div>
                 ) : (
