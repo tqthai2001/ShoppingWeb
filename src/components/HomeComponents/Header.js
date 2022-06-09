@@ -141,7 +141,7 @@ const Header = ({user, cart, removeCart, logout, product, search = true, showPro
                             <li className="nav-item"><Link to="/" className="nav-link">Home</Link></li>
                             <li className="nav-item"><Link to="/products" className="nav-link">Shop</Link></li>
                             <li className="nav-item dropdown">
-                                <Link className="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</Link>
+                                <Link className="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</Link>
                                 <div class="dropdown-menu" aria-labelledby="dropdown04">
                                     <Link to="" className="dropdown-item">Shop</Link>
                                     <Link to="" className="dropdown-item">Shop</Link>
