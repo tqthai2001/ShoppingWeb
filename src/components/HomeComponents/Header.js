@@ -140,7 +140,14 @@ const Header = ({user, cart, removeCart, logout, product, search = true, showPro
                         <ul className="navbar-nav ml-auto">
                             <li className="nav-item"><Link to="/" className="nav-link">Home</Link></li>
                             <li className="nav-item"><Link to="/products" className="nav-link">Shop</Link></li>
-                            <li className="nav-item"><Link to="/admin-user" className="nav-link">Admin</Link></li>
+                            <li className="nav-item dropdown">
+                                <Link className="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</Link>
+                                <div class="dropdown-menu" aria-labelledby="dropdown04">
+                                    <Link to="" className="dropdown-item">Shop</Link>
+                                    <Link to="" className="dropdown-item">Shop</Link>
+                                    <Link to="" className="dropdown-item">Shop</Link>
+                                </div>
+                            </li>
                             <li className="nav-item"><Link to="/admin-order" className="nav-link">Staff</Link></li>
                             <li className="nav-item"><Link to="/" className="nav-link">Contact</Link></li>
                             <li className="nav-item"><Link to="/account" className="nav-link"><span className="fa-solid fa-user"></span></Link></li>

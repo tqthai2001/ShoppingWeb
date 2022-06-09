@@ -301,7 +301,11 @@ const Checkout = ({ resetCart, orderRedux }) => {
                                                                             <div className="col-md-12">
                                                                                 <div className="radio">
                                                                                     <label>
-                                                                                        <input type="radio" name="optradio" className="mr-2"/>
+                                                                                        <input type="radio" name="optradio" className="mr-2"
+                                                                                        onChange={(e) => {
+                                                                                            setCoupon(index);
+                                                                                        }}
+                                                                                        />
                                                                                         <span>
                                                                                             <div className="discount-item-thumbnail-text">
                                                                                                 Tất cả sản phẩm
@@ -322,6 +326,20 @@ const Checkout = ({ resetCart, orderRedux }) => {
                                                             }
                                                         </div>
                                                         <div className="modal-footer">
+                                                            <button onClick={() => {
+                                                                if (coupon > 0 && total < vouchers[coupon].condition) {
+                                                                    setCouponRate(0);
+                                                                }
+                                                                const index = coupon;
+                                                                if (index < 0) toast.warning("Vui lòng chọn voucher");
+                                                                else {
+                                                                    setCouponRate(vouchers[index].disCount);
+                                                                    toast.success("Áp dụng voucher thành công");
+                                                                }
+                                                            }}
+                                                            >
+                                                                OK
+                                                            </button>
                                                             <button onClick={close}>Close</button>
                                                         </div>
                                                     </div>
@@ -399,6 +417,7 @@ const Checkout = ({ resetCart, orderRedux }) => {
                         </div>
                     </div>
                 </div>
+                <ToastContainer/>
             </section> 
         </div>
     )
